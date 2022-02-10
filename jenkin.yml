@@ -1,0 +1,14 @@
+- name: Install nginx
+  hosts: jenkins
+  tasks:
+    - name: install java
+      apt:
+        name: openjdk-11-jre-headless
+        state: present
+        update_cache: yes
+      
+    - name: install jenkins
+      apt:
+        name: jenkins
+        state: latest
+        update_cache: yes
