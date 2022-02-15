@@ -1,0 +1,20 @@
+- name: Install jenkins
+  hosts: nginx
+  tasks:
+    - name: install java
+      apt:
+        name: openjdk-11-jre-headless
+        state: present
+        update_cache: yes
+      
+    - name: apt-key add
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        state: present     
+    - name: debian package adding  
+      command: sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    - name: install jenkins
+      apt:
+        name: jenkins
+        state: latest
+        update_cache: yes
